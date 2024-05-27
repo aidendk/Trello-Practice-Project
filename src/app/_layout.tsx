@@ -6,12 +6,15 @@ import RealmCustomProvider from "../providers/realm";
 
 export default function RootLayout () {
     return (
-        <ThemeProvider value={DarkTheme}>
-            <RealmCustomProvider>
-                <Stack screenOptions={{}}>
-                </Stack>
-            </RealmCustomProvider>
-            <StatusBar style="light"/>
-        </ThemeProvider>
+        <>
+            <ThemeProvider value={DarkTheme}>
+                <RealmCustomProvider>
+                    <Stack screenOptions={{}}>
+                    </Stack>
+                </RealmCustomProvider>
+            </ThemeProvider>
+            <StatusBar style="light"/>   
+        </>
+
     )
 }
