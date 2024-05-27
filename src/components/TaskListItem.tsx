@@ -1,10 +1,11 @@
 import { View, Text, StyleSheet} from "react-native"
 import { AntDesign } from '@expo/vector-icons';
 
-export default function TaskListItem({ task }) {
+export default function TaskListItem({task}:any) {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{task.description}</Text>
+            
             <AntDesign name="close" size={16} color="gray" />
         </View>
     )
