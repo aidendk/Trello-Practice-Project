@@ -1,22 +1,17 @@
-import { Text, View, SafeAreaView } from "react-native";
-import TaskListItem from "@/src/components/TaskListItem";
-import TaskList from "@/src/components/TaskList";
+import { Text, View, } from "react-native";
+import TaskBoard from "@/src/components/TaskBoard";
+import { StatusBar } from "expo-status-bar";
 
 export default function Index() {
   return (
-    <SafeAreaView    
+    <View
       style={{
         flex: 1,
+        backgroundColor: "#fff"
       }}>
-      <View
-        style={{
-          padding: 10,
-        }}
-      >
-        <TaskList/>
-
-      </View>
-    </SafeAreaView>
+        <TaskBoard/>
+      <StatusBar style="light"/>
+    </View>
 
   );
 }
