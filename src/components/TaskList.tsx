@@ -6,8 +6,11 @@ import { Task } from "../models/Task";
 
 export default function TaskList() {
     const realm = useRealm();
+
+    // this queries the db and finds already created tasks, rendered on line 31
     const tasks = useQuery(Task);
 
+    // used for text input stuff
     const [newTask, setNewTask] = useState('');
 
     const createTask = () => {
@@ -26,7 +29,9 @@ export default function TaskList() {
                 Todo
             </Text>
 
-            {/* the list of tasks */}
+            {/* the list of tasks  - data takes in "tasks" from querying db, then renders it with renderItem which
+            renders taskListItem, prop task takes item which has info of description, id, etc. to send to TaskListItem
+            realm creates new item with id and description etc, then flatList receives new data and sends to be rendered*/}
             <FlatList data={tasks} contentContainerStyle={{gap: 5}} renderItem={({item}) => (
                 <TaskListItem task={item}/>
             )}/>

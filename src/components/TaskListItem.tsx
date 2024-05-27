@@ -14,6 +14,7 @@ export default function TaskListItem({task}: {task: Task}) {
     }
 
     return (
+        // using ${task._id for the href gives a specific href }
         <Link href={`/${task._id}`} asChild>
             <Pressable style={styles.container}>
                     <Text style={styles.text}>{task.description}</Text>
