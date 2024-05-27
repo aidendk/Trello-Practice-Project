@@ -4,8 +4,8 @@ import { useState } from "react";
 
 export default function TaskList() {
     const [tasks, setTasks] = useState([
-        {description: 'first task'},
-        {description: 'second task'}
+        {id: "123", description: 'first task'},
+        {id: "67", description: 'second task'}
     ]);
 
     const [newTask, setNewTask] = useState('');
