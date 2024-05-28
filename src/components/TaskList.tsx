@@ -1,7 +1,7 @@
 import { View, Text, FlatList, TextInput, Button, StyleSheet } from "react-native";
 import TaskListItem from "./TaskListItem";
 import { useState } from "react";
-import { useRealm, useQuery } from "@realm/react";
+import { useRealm, useQuery, useUser } from "@realm/react";
 import { Task } from "../models/Task";
 
 export default function TaskList() {
@@ -10,6 +10,9 @@ export default function TaskList() {
     // this queries the db and finds already created tasks, rendered on line 31
     const tasks = useQuery(Task);
 
+    // gets user using app rn
+    const user = useUser();
+
     // used for text input stuff
     const [newTask, setNewTask] = useState('');
 
@@ -17,7 +20,7 @@ export default function TaskList() {
         //setTasks([...tasks, {description: newTask}]);
         // all modifications, update, read, delete, should happen inside realm.write which is a transaction.
         realm.write(() => {
-            realm.create(Task, {description: newTask, user_id: '123'});
+            realm.create(Task, {description: newTask, user_id: user.id});
         });
 
         setNewTask('');
