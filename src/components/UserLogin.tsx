@@ -6,25 +6,37 @@ import {
   useEmailPasswordAuth,
   useUser,
 } from '@realm/react';
-import { useRouter } from 'expo-router';
+import { useRootNavigationState, useRouter } from 'expo-router';
 
-export default function LoginScreen() {
+export default function UserLogin() {
   const { result, logInWithEmailPassword } = useAuth();
   const { register } = useEmailPasswordAuth();
-  const user = useUser();
+  const getUser = async () => {
+    const user = await useUser();
+    return user;
+  }
 
   const router = useRouter();
 
+  const awaitRouter = async () => {
+        if (navigatorReady) {
+            await router.replace("")
+        }
+  }
+
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [password, setPassword] = useState('')
+
+const rootNavigationState = useRootNavigationState()
+const navigatorReady = rootNavigationState?.key != null
 
   // Automatically log in after registration
   useEffect(() => {
     if (result.success && result.operation === AuthOperationName.Register) {
-      logInWithEmailPassword({ email, password });
-        router.replace("")
+            logInWithEmailPassword({ email, password });
+            awaitRouter;
     }
-  }, [result, logInWithEmailPassword, email, password, user]);
+  }, [result, logInWithEmailPassword, email, password, getUser, navigatorReady]);
 
   return (
     <View style={styles.content}>
